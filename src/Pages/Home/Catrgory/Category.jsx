@@ -2,6 +2,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import 'swiper/css';
 import "swiper/css/pagination";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import slide1 from '../../../assets/home/slide1.jpg';
 import slide2 from '../../../assets/home/slide2.jpg';
 import slide3 from '../../../assets/home/slide3.jpg';
@@ -25,23 +27,28 @@ const Category = () => {
                         className='mySwiper md:mt-12 mt-8 md:mb-24'
                   >
                         <SwiperSlide>
-                              <img src={slide1} alt="" />
+                              <LazyLoadImage src={slide1} effect="blur"
+                        loading='lazy' alt="" />
                               <h3 className='text-white uppercase right-4 md:right-1/2 absolute bottom-2 md:bottom-8 md:text-2xl text-[12px] font-semibold'>Salad</h3>
                         </SwiperSlide>
                         <SwiperSlide>
-                              <img src={slide2} alt="" />
+                              <LazyLoadImage src={slide2} effect="blur"
+                        loading='lazy' alt=""  />
                               <h3 className='text-white uppercase right-4 md:right-1/2 absolute bottom-2 md:bottom-8 md:text-2xl text-[12px] font-semibold'>Pizza</h3>
                         </SwiperSlide>
                         <SwiperSlide>
-                              <img src={slide3} alt="" />
+                              <LazyLoadImage src={slide3} effect="blur"
+                        loading='lazy' alt="" />
                               <h3 className='text-white uppercase right-4 md:right-1/2 absolute bottom-2 md:bottom-8 md:text-2xl text-[12px] font-semibold'>Soup</h3>
                         </SwiperSlide>
                         <SwiperSlide>
-                              <img src={slide4} alt="" />
+                              <LazyLoadImage src={slide4} effect="blur"
+                        loading='lazy' alt="" />
                               <h3 className='text-white uppercase right-4 md:right-1/2 absolute bottom-2 md:bottom-8 md:text-2xl text-[12px] font-semibold'>Dessert</h3>
                         </SwiperSlide>
                         <SwiperSlide>
-                              <img src={slide5} alt="" />
+                              <LazyLoadImage src={slide5} effect="blur"
+                        loading='lazy' alt="" />
                               <h3 className='text-white uppercase right-4 md:right-1/2 absolute bottom-2 md:bottom-8 md:text-2xl text-[12px] font-semibold'>Salad</h3>
                         </SwiperSlide>
                   </Swiper>

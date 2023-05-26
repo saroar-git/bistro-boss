@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import facebook from '../../assets/icon/fb.png';
 import instagram from '../../assets/icon/ins.png';
 import twitter from '../../assets/icon/twitter.png';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Footer = () => {
       return (
@@ -24,9 +26,12 @@ const Footer = () => {
                               <p className="md:mt-6 mt-3 text-xs md:text-base">Join us on social media</p>
 
                               <div className="flex items-center gap-5 mt-4">
-                                    <Link><img src={facebook} alt="" className='w-5' /></Link>
-                                    <Link><img src={instagram} alt="" className='w-5' /></Link>
-                                    <Link><img src={twitter} alt="" className='w-5' /></Link>
+                                    <Link><LazyLoadImage src={facebook} effect="blur"
+                                          loading='lazy' alt="" className='w-5' /></Link>
+                                    <Link><LazyLoadImage src={instagram} effect="blur"
+                                          loading='lazy' alt="" className='w-5' /></Link>
+                                    <Link><LazyLoadImage src={twitter} effect="blur"
+                                          loading='lazy' alt="" className='w-5' /></Link>
                               </div>
                         </div>
                   </div>
