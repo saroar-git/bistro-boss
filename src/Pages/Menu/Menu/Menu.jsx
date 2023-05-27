@@ -39,22 +39,22 @@ const Menu = () => {
 
                   {/* dessert menu items  */}
                   <>
-                        <MenuCategory items={dessert.slice(0, 6)} cover={dessertImg} title={'Dessert'} subTitle={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} />
+                        <MenuCategory items={dessert} cover={dessertImg} title={'dessert'} subTitle={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} />
                   </>
 
                   {/* pizza menu items  */}
                   <>
-                        <MenuCategory items={pizza.slice(0, 6)} cover={pizzaImg} title={'Pizza'} subTitle={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} />
+                        <MenuCategory items={pizza} cover={pizzaImg} title={'pizza'} subTitle={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} />
                   </>
 
                   {/* salad menu items  */}
                   <>
-                        <MenuCategory items={salad.slice(0, 6)} cover={saladImg} title={'salad'} subTitle={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} />
+                        <MenuCategory items={salad} cover={saladImg} title={'salad'} subTitle={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} />
                   </>
 
                   {/* soup menu items  */}
                   <>
-                        <MenuCategory items={soup.slice(0, 6)} cover={soupImg} title={'soup'} subTitle={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} />
+                        <MenuCategory items={soup} cover={soupImg} title={'soup'} subTitle={'Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'} />
                   </>
             </>
       );

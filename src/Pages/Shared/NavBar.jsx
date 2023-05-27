@@ -11,7 +11,7 @@ const NavBar = () => {
 
             <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='/menu'>Our Menu</Link></li>
 
-            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='/order'>Make a Order</Link></li>
+            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='/order/salad'>Make a Order</Link></li>
 
       </>;
 

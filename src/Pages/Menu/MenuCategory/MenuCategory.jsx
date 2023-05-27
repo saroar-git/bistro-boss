@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Cover from "../../Shared/Cover";
 import MenuItem from "../../Shared/MenuItem";
 
@@ -16,6 +17,11 @@ const MenuCategory = ({ items, cover, title, subTitle }) => {
                               {
                                     items.map(item => <MenuItem key={item._id} item={item} />)
                               }
+                        </div>
+                        <div className="text-center mt-10">
+                              <button className="px-3 uppercase rounded-lg py-2 text-black border-b-2 border-black hover:bg-slate-700 hover:text-white hover:duration-500">
+                                    <Link to={`/order/${title}`}>ORDER YOUR FAVORITE FOOD</Link>
+                              </button>
                         </div>
                   </div>
             </>
