@@ -1,4 +1,3 @@
-import SectionTitle from "../../../../Components/SectionTitle";
 import { FaQuoteLeft } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
@@ -7,6 +6,7 @@ import "swiper/css/navigation";
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
 import { useEffect, useState } from "react";
+import SectionTitle from "../../../Components/SectionTitle";
 
 
 const Testimonials = () => {

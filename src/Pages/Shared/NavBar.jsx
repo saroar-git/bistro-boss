@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
-import './NavBar.css'
+import './NavBar.css';
 
 const NavBar = () => {
       const navItems = <>
-            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='./'>Home</Link></li>
+            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='/'>Home</Link></li>
 
-            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='./'>Contact Us</Link></li>
+            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='/'>Contact Us</Link></li>
 
-            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='./'>Dashboard</Link></li>
+            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='/'>Dashboard</Link></li>
 
-            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='./'>Our Menu</Link></li>
-            
+            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='/menu'>Our Menu</Link></li>
+
+            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='/order'>Make a Order</Link></li>
+
       </>;
 
       return (
@@ -36,7 +38,7 @@ const NavBar = () => {
                         </ul>
                   </div>
                   <div className="navbar-end">
-                       
+
                   </div>
             </div>
       );
