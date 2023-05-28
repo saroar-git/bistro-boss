@@ -1,6 +1,6 @@
 import SectionTitle from "../../../Components/SectionTitle";
 import featuredImg from '../../../assets/home/featured.jpg';
-import  './Featured.css'
+import './Featured.css';
 
 
 const Featured = () => {
@@ -12,9 +12,8 @@ const Featured = () => {
                   />
 
                   <div className="md:flex justify-center items-center pb-20 md:px-16 md:w-[1240px] w-11/12 mx-auto gap-12">
-                        <div className="">
-                              <img src={featuredImg} alt="" className="w-[500px] mb-4 md:mb-0" />
-                        </div>
+                        <img src={featuredImg} alt="" className="w-[500px] mb-4 md:mb-0" />
+
                         <div className="md:w-[600px] space-y-2">
                               <p>March 20, 2023</p>
                               <p className="uppercase text-[20px]">WHERE CAN I GET SOME?</p>

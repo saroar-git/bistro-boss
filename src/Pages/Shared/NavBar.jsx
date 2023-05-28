@@ -1,17 +1,41 @@
 import { Link } from "react-router-dom";
 import './NavBar.css';
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const NavBar = () => {
+      const { user, logOut } = useContext(AuthContext);
+
+      const handleLogout = () => {
+            logOut()
+                  .then(() => { })
+                  .catch(error => console.error(error.message));
+      };
+
       const navItems = <>
-            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='/'>Home</Link></li>
+            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/'>Home</Link></li>
 
-            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='/'>Contact Us</Link></li>
+            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/'>Contact Us</Link></li>
 
-            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='/'>Dashboard</Link></li>
+            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/'>Dashboard</Link></li>
 
-            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='/menu'>Our Menu</Link></li>
+            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/menu'>Our Menu</Link></li>
 
-            <li className="hover:btn hover:btn-outline hover:btn-primary"><Link to='/order/salad'>Make a Order</Link></li>
+            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/order/salad'>Our Shop</Link></li>
+
+            <li>
+                  {
+                        user ?
+                              <>
+                                    <li onClick={handleLogout} className="rounded-3xl hover:bg-black hover:bg-opacity-30">Logout</li>
+                              </>
+                              :
+                              <>
+                                    <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/login'>Login</Link></li>
+                              </>
+                  }
+            </li>
+
 
       </>;
 
@@ -33,12 +57,9 @@ const NavBar = () => {
                   </div>
 
                   <div className="navbar-end hidden lg:flex">
-                        <ul className="menu menu-horizontal px-1 text-white font-bold uppercase">
+                        <ul className="menu menu-horizontal text-white font-semibold uppercase fixed">
                               {navItems}
                         </ul>
-                  </div>
-                  <div className="navbar-end">
-
                   </div>
             </div>
       );
