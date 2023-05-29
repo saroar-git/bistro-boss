@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import './NavBar.css';
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { BiCartAdd } from "react-icons/bi";
+import { HiOutlineLogin, HiOutlineLogout } from "react-icons/hi";
+import useCart from "../../Hooks/useCart";
 
 const NavBar = () => {
       const { user, logOut } = useContext(AuthContext);
+      const [cart] = useCart();
 
       const handleLogout = () => {
             logOut()
@@ -15,27 +19,49 @@ const NavBar = () => {
       const navItems = <>
             <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/'>Home</Link></li>
 
-            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/'>Contact Us</Link></li>
-
-            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/'>Dashboard</Link></li>
-
             <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/menu'>Our Menu</Link></li>
 
             <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/order/salad'>Our Shop</Link></li>
 
+            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/'>Dashboard</Link></li>
+
+            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/'>Contact Us</Link></li>
+
             <li>
-                  {
-                        user ?
-                              <>
-                                    <li onClick={handleLogout} className="rounded-3xl hover:bg-black hover:bg-opacity-30">Logout</li>
-                              </>
-                              :
-                              <>
-                                    <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/login'>Login</Link></li>
-                              </>
-                  }
+                  <Link to='/dashboard/mycart' className="gap-0">
+                        <BiCartAdd className="text-3xl" />
+                        <div className="badge text-xs font-bold text-white -ml-1 mb-4 badge-outline">+{cart?.length || 0}</div>
+                  </Link>
             </li>
 
+            <li className="-mx-3">
+                  {user && (
+                        <div className="avatar online hidden lg:block pr-0">
+                              <div className="md:w-10 w-8 rounded-full">
+                                    <img
+                                          src={user.photoURL ? user.photoURL : "BB"}
+                                          title={user.displayName ? user.displayName : ""}
+                                    />
+                              </div>
+                        </div>
+                  )}
+                  <>
+                        {user ? (
+                              <button
+                                    title="Log out"
+                                    onClick={handleLogout}
+                                    className="text-3xl rounded-3xl hover:bg-black hover:bg-opacity-30"
+                              >
+                                    <HiOutlineLogout />
+                              </button>
+                        ) : (
+                              <Link to="/login">
+                                    <li className="text-3xl rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/login'><HiOutlineLogin /></Link></li>
+                              </Link>
+                        )}
+                  </>
+
+            </li>
 
       </>;
 
@@ -60,6 +86,7 @@ const NavBar = () => {
                         <ul className="menu menu-horizontal text-white font-semibold uppercase fixed">
                               {navItems}
                         </ul>
+
                   </div>
             </div>
       );

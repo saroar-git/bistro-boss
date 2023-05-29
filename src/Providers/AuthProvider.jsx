@@ -24,9 +24,14 @@ const AuthProvider = ({ children }) => {
             return signOut(auth);
       };
 
-      const updateUserProfile = (name, photo) => {
+      const updateUserProfile = (user, name, photo) => {
+            setLoading(true);
             return updateProfile(auth.currentUser, {
                   displayName: name, photoURL: photo
+            }).then(() => {
+                  const updatedUser = { ...user, displayName: name, photoURL: photo };
+                  setUser(updatedUser);
+                  setLoading(false);
             });
       };
 

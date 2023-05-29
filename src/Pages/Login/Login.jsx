@@ -11,6 +11,8 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
       const [disabled, setDisabled] = useState(true);
+      const [error, setError] = useState("");
+
       const { signIn } = useContext(AuthContext);
       const navigate = useNavigate();
       const location = useLocation();
@@ -36,22 +38,22 @@ const Login = () => {
             const form = event.target;
             const email = form.email.value;
             const password = form.password.value;
-            console.log(email, password);
+
             signIn(email, password)
                   .then(result => {
                         const user = result.user;
                         console.log(user);
                         Swal.fire({
-                              title: 'User Login Successful.',
-                              showClass: {
-                                    popup: 'animate__animated animate__fadeInDown'
-                              },
-                              hideClass: {
-                                    popup: 'animate__animated animate__fadeOutUp'
-                              }
+                              position: 'top-end',
+                              icon: 'success',
+                              title: 'Login successful',
+                              showConfirmButton: false,
+                              timer: 1500
                         });
+                        setError("");
                         navigate(from, { replace: true });
-                  });
+                  })
+                  .catch(error => setError(error.message));
       };
 
       return (
@@ -75,6 +77,7 @@ const Login = () => {
                                                 <img src={img} alt="" className='w-[450px] md:w-[500px]' />
                                           </div>
                                           <div className="card flex-shrink-0 w-full max-w-sm">
+
                                                 <form className="card-body" onSubmit={handleLogin}>
                                                       <h2 className='text-center text-3xl font-bold'>Login</h2>
 
@@ -101,6 +104,10 @@ const Login = () => {
 
                                                       <div className="form-control mt-6">
                                                             <input disabled={disabled} type="submit" value="Login" className="btn bg-[#D1A054] border-none text-white font-bold" />
+
+                                                            <div className="text-center">
+                                                                  <p className="text-red-600">{error}</p>
+                                                            </div>
 
                                                             <h4 className='text-[#D1A054] text-sm mt-2 font-semibold text-center'>New here? Create a New <Link to='/register' className='underline text-lg'> Account.</Link></h4>
                                                       </div>

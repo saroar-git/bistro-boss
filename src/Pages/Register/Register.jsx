@@ -3,7 +3,7 @@ import { Parallax } from 'react-parallax';
 import bgImage from '../../assets/others/authentication.png';
 import loginImg from '../../assets/others/login.png';
 import img from '../../assets/others/authentication2.png';
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
@@ -12,37 +12,40 @@ import Swal from "sweetalert2";
 
 const Register = () => {
       const { register, handleSubmit, formState: { errors }, reset } = useForm();
-      const { createUser, updateUserProfile, logOut } = useContext(AuthContext);
+      const { createUser, updateUserProfile } = useContext(AuthContext);
       const navigate = useNavigate();
+      const [error, setError] = useState("");
 
       const onSubmit = data => {
+
             createUser(data.email, data.password)
                   .then(result => {
                         const loggedUser = result.user;
                         console.log(loggedUser);
 
-                        updateUserProfile(data.name, data.photo)
-                              .then(() => { })
-                              .catch(error => console.error(error.message));
-
-                        Swal.fire({
-                              title: 'Registration Successful, please login',
-                              showClass: {
-                                    popup: 'animate__animated animate__fadeInDown'
-                              },
-                              hideClass: {
-                                    popup: 'animate__animated animate__fadeOutUp'
-                              }
-                        });
+                        updateUserData(result.user, data.name, data.photo);
+                        setError("");
                         reset();
-
-                        logOut()
-                              .then(() => {
-                                    navigate('/login');
-                              })
-                              .catch(error => console.error(error.message));
+                        navigate('/');
                   })
-                  .catch(error => console.error(error.message));
+                  .catch(error => setError(error.message));
+      };
+
+      const updateUserData = (user, name, photo) => {
+            updateUserProfile(user, name, photo)
+                  .then(() => {
+                        console.log('user profile info updated');
+                        reset();
+                        Swal.fire({
+                              position: 'top-end',
+                              icon: 'success',
+                              title: 'Registration successful',
+                              showConfirmButton: false,
+                              timer: 1500
+                        });
+                  })
+                  .catch(error => setError(error));
+
       };
 
 
@@ -111,6 +114,10 @@ const Register = () => {
 
                                                       <div className="form-control mt-6">
                                                             <input type="submit" value="Register" className="btn bg-[#D1A054] border-none text-white font-bold" />
+
+                                                            <div className="text-center">
+                                                                  <p className="text-red-600">{error}</p>
+                                                            </div>
 
                                                             <h4 className='text-[#D1A054] text-sm mt-2 font-semibold text-center'>Already registered? Go to <Link to='/login' className='underline text-lg'>Login.</Link></h4>
                                                       </div>

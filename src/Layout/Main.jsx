@@ -7,7 +7,7 @@ const Main = () => {
       const noHeaderFooter = location.pathname.includes('login') || location.pathname.includes('register');
 
       return (
-            <div>
+            <div className="font-cinzel">
                   {noHeaderFooter || <NavBar />}
                   <Outlet />
                   {noHeaderFooter || <Footer />}

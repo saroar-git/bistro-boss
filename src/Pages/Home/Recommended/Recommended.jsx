@@ -5,7 +5,7 @@ import SectionTitle from "../../../Components/SectionTitle";
 const Recommended = () => {
       const [menu, setMenu] = useState([]);
       useEffect(() => {
-            fetch('menu.json')
+            fetch('https://bistro-boss-server-kohl.vercel.app/menu')
                   .then(res => res.json())
                   .then(data => {
                         const popularItems = data.filter(item => item.category === 'salad');
@@ -24,10 +24,10 @@ const Recommended = () => {
 
                                     <div key={item._id}>
                                           <div className="card md:w-96 bg-base-100 shadow-xl">
-                                                <figure><img src={item.image} alt="Shoes" /></figure>
+                                                <figure><img src={item?.image} alt="Shoes" /></figure>
                                                 <div className="card-body justify-center text-center space-y-3">
-                                                      <h2 className="card-title justify-center">{item.name}</h2>
-                                                      <p>{item.recipe}</p>
+                                                      <h2 className="card-title justify-center">{item?.name}</h2>
+                                                      <p>{item?.recipe}</p>
                                                       <div className="card-actions justify-center">
                                                             <button className="px-3 uppercase rounded-lg py-2 text-[#BB8506] border-b-2 bg-[#E8E8E8] border-[#BB8506]  hover:bg-[#111827] hover:duration-500">Add to Cart</button>
                                                       </div>
