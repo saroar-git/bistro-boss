@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../Components/SocialLogin';
 
 const Login = () => {
       const [disabled, setDisabled] = useState(true);
@@ -67,8 +68,8 @@ const Login = () => {
                         <title>Bistro-Boss | Login</title>
                   </Helmet>
 
-                  <div className="hero min-h-[600px]">
-                        <img src={loginImg} alt="" className="md:w-8/12 w-11/12 my-[55px] shadow-2xl box-border border border-slate-300 rounded relative py-96 md:py-4" />
+                  <div className="hero min-h-screen">
+                        <img src={loginImg} alt="" className="md:w-8/12 w-11/12 my-6 shadow-2xl box-border border border-slate-300 rounded relative py-96 md:py-12" />
                         <div className='absolute'>
 
                               <div className="hero min-h-screen">
@@ -111,9 +112,7 @@ const Login = () => {
 
                                                             <h4 className='text-[#D1A054] text-sm mt-2 font-semibold text-center'>New here? Create a New <Link to='/register' className='underline text-lg'> Account.</Link></h4>
                                                       </div>
-                                                      <div className="text-center">
-                                                            <p>or sign in with</p>
-                                                      </div>
+                                                      <SocialLogin />
                                                 </form>
                                           </div>
                                     </div>

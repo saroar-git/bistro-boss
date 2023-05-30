@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import './NavBar.css';
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -17,15 +17,15 @@ const NavBar = () => {
       };
 
       const navItems = <>
-            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/'>Home</Link></li>
+            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><NavLink to='/'>Home</NavLink></li>
 
-            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/menu'>Our Menu</Link></li>
+            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><NavLink to='/menu'>Our Menu</NavLink></li>
 
-            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/order/salad'>Our Shop</Link></li>
+            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><NavLink to='/order/salad'>Our Shop</NavLink></li>
 
-            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/'>Dashboard</Link></li>
+            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><NavLink to='/board'>Dashboard</NavLink></li>
 
-            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><Link to='/'>Contact Us</Link></li>
+            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><NavLink to='/contact'>Contact Us</NavLink></li>
 
             <li>
                   <Link to='/dashboard/mycart' className="gap-0">

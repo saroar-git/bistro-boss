@@ -8,6 +8,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import SocialLogin from "../../Components/SocialLogin";
 
 
 const Register = () => {
@@ -34,15 +35,28 @@ const Register = () => {
       const updateUserData = (user, name, photo) => {
             updateUserProfile(user, name, photo)
                   .then(() => {
-                        console.log('user profile info updated');
-                        reset();
-                        Swal.fire({
-                              position: 'top-end',
-                              icon: 'success',
-                              title: 'Registration successful',
-                              showConfirmButton: false,
-                              timer: 1500
-                        });
+
+                        const savedUser = { name, email: user.email };
+                        fetch('http://localhost:5000/users', {
+                              method: "POST",
+                              headers: { 'content-type': 'application/json' },
+                              body: JSON.stringify(savedUser)
+                        })
+                              .then(res => res.json())
+                              .then(data => {
+                                    if (data) {
+                                          reset();
+                                          Swal.fire({
+                                                position: 'top-end',
+                                                icon: 'success',
+                                                title: 'Registration successful',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                          });
+                                    }
+                              });
+
+
                   })
                   .catch(error => setError(error));
 
@@ -60,8 +74,8 @@ const Register = () => {
                         <title>Bistro-Boss | Register</title>
                   </Helmet>
 
-                  <div className="hero min-h-[600px]">
-                        <img src={loginImg} alt="" className="md:w-8/12 w-11/12 my-[55px] shadow-2xl box-border border border-slate-300 rounded relative py-96 md:py-4" />
+                  <div className="hero min-h-screen">
+                        <img src={loginImg} alt="" className="md:w-8/12 w-11/12 my-6 shadow-2xl box-border border border-slate-300 rounded relative py-96 md:py-12" />
                         <div className='absolute'>
 
                               <div className="hero min-h-screen">
@@ -121,9 +135,7 @@ const Register = () => {
 
                                                             <h4 className='text-[#D1A054] text-sm mt-2 font-semibold text-center'>Already registered? Go to <Link to='/login' className='underline text-lg'>Login.</Link></h4>
                                                       </div>
-                                                      <div className="text-center">
-                                                            <p>or sign in with</p>
-                                                      </div>
+                                                      <SocialLogin />
                                                 </form>
                                           </div>
                                     </div>

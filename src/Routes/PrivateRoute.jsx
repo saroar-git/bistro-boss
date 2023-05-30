@@ -9,11 +9,12 @@ const PrivateRoute = ({ children }) => {
 
       if (loading) {
             return (
-                  <div className="flex justify-center items-center">
+                  <div className="text-center">
                         <img
                               src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/78796f69321565.5b7d0cbe71285.gif"
-                              alt=""
+                              alt="" className="w-1/2 mx-auto mb-4"
                         ></img>
+                        <h3 className="text-3xl font-bold">Please Reload After 10 Second..</h3>
                   </div>
             );
       }
