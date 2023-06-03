@@ -5,11 +5,11 @@ import SectionTitle from "../../../Components/SectionTitle";
 const Recommended = () => {
       const [menu, setMenu] = useState([]);
       useEffect(() => {
-            fetch('https://bistro-boss-server-kohl.vercel.app/menu')
+            fetch('http://localhost:5000/menu')
                   .then(res => res.json())
                   .then(data => {
                         const popularItems = data.filter(item => item.category === 'salad');
-                        setMenu(popularItems.slice(0, 3));
+                        setMenu(popularItems.slice(4, 7));
                   });
       }, []);
 

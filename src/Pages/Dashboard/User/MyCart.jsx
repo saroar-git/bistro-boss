@@ -4,7 +4,6 @@ import SectionTitle from "../../../Components/SectionTitle";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 
-
 const MyCart = () => {
       const [cart, refetch] = useCart();
       const total = cart.reduce((sum, item) => item.price + sum, 0);
@@ -20,7 +19,7 @@ const MyCart = () => {
                   confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                   if (result.isConfirmed) {
-                        fetch(`https://bistro-boss-server-kohl.vercel.app/carts/${item._id}`, {
+                        fetch(`http://localhost:5000/carts/${item._id}`, {
                               method: 'DELETE'
                         })
                               .then(res => res.json())
@@ -46,11 +45,11 @@ const MyCart = () => {
 
                   <SectionTitle subHeading={'---My Cart---'} heading={'WANNA ADD MORE?'} />
 
-                  <div className="py-10 bg-base-200 rounded">
+                  <div className="py-10 bg-base-200 rounded mt-20">
 
                         <div className="md:flex justify-around md:text-2xl uppercase space-y-1 md:space-y-0 font-semibold">
                               <h3>Total orders: {cart.length}</h3>
-                              <h4>Total price: {total}</h4>
+                              <h4>Total price: {total.toFixed(2)}</h4>
                               <button className="uppercase rounded md:text-xl btn-sm text-white bg-[#D1A054]">pay</button>
                         </div>
 

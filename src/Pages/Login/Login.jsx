@@ -4,17 +4,17 @@ import loginImg from '../../assets/others/login.png';
 import img from '../../assets/others/authentication2.png';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../Providers/AuthProvider';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 import SocialLogin from '../../Components/SocialLogin';
+import { useState, useEffect } from 'react';
+import useAuth from '../../Hooks/useAuth';
 
 const Login = () => {
       const [disabled, setDisabled] = useState(true);
       const [error, setError] = useState("");
 
-      const { signIn } = useContext(AuthContext);
+      const { signIn } = useAuth();
       const navigate = useNavigate();
       const location = useLocation();
 
@@ -104,7 +104,7 @@ const Login = () => {
                                                       </div>
 
                                                       <div className="form-control mt-6">
-                                                            <input disabled={disabled} type="submit" value="Login" className="btn bg-[#D1A054] border-none text-white font-bold" />
+                                                            <input disabled={false} type="submit" value="Login" className="btn bg-[#D1A054] border-none text-white font-bold" />
 
                                                             <div className="text-center">
                                                                   <p className="text-red-600">{error}</p>

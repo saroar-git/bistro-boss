@@ -3,22 +3,21 @@ import { Parallax } from 'react-parallax';
 import bgImage from '../../assets/others/authentication.png';
 import loginImg from '../../assets/others/login.png';
 import img from '../../assets/others/authentication2.png';
-import { useContext, useState } from "react";
-import { AuthContext } from "../../Providers/AuthProvider";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import SocialLogin from "../../Components/SocialLogin";
+import useAuth from "../../Hooks/useAuth";
 
 
 const Register = () => {
       const { register, handleSubmit, formState: { errors }, reset } = useForm();
-      const { createUser, updateUserProfile } = useContext(AuthContext);
+      const { createUser, updateUserProfile } = useAuth();
       const navigate = useNavigate();
       const [error, setError] = useState("");
 
       const onSubmit = data => {
-
             createUser(data.email, data.password)
                   .then(result => {
                         const loggedUser = result.user;
@@ -44,7 +43,7 @@ const Register = () => {
                         })
                               .then(res => res.json())
                               .then(data => {
-                                    if (data) {
+                                    if (data.insertedId) {
                                           reset();
                                           Swal.fire({
                                                 position: 'top-end',
@@ -55,11 +54,8 @@ const Register = () => {
                                           });
                                     }
                               });
-
-
                   })
                   .catch(error => setError(error));
-
       };
 
 

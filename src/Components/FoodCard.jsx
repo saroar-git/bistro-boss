@@ -1,13 +1,12 @@
-import { useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import useCart from "../Hooks/useCart";
+import useAuth from "../Hooks/useAuth";
 
 const FoodCard = ({ item }) => {
-      const { user } = useContext(AuthContext);
+      const { user } = useAuth();
       const { image, name, recipe, price, _id } = item;
       const [, refetch] = useCart();
 
@@ -19,14 +18,14 @@ const FoodCard = ({ item }) => {
             if (user && user.email) {
                   const cartItem = { itemId: _id, name, price, recipe, image, email: user.email, };
 
-                  fetch('https://bistro-boss-server-kohl.vercel.app/carts', {
+                  fetch('http://localhost:5000/carts', {
                         method: "POST",
                         headers: { 'content-type': 'application/json' },
                         body: JSON.stringify(cartItem)
                   })
                         .then(res => res.json())
                         .then(data => {
-                              if (data) {
+                              if (data.insertedId) {
                                     refetch();
                                     Swal.fire({
                                           position: 'top-end',

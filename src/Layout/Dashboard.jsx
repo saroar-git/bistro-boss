@@ -3,11 +3,11 @@ import { GiLoveLetter, GiWallet } from "react-icons/gi";
 import { VscFeedback, VscHome, VscListSelection } from "react-icons/vsc";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../Hooks/useCart";
-
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
       const [cart] = useCart();
-      const isAdmin = false;
+      const isAdmin = useAdmin();
 
       return (
             <div className="drawer drawer-mobile font-cinzel">
@@ -20,7 +20,7 @@ const Dashboard = () => {
                   <div className="drawer-side">
                         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                         <ul className="menu p-4 w-72 bg-[#D1A054] uppercase font-semibold">
-                            
+
                               <div className="p-4 mb-8">
                                     <h3 className="md:font-extrabold md:text-[26px] text-lg font-bold">BISTRO BOSS </h3>
                                     <p className="md:text-lg text-xs ml-1">R e s t a u r a n t</p>
@@ -33,7 +33,7 @@ const Dashboard = () => {
                                                       <NavLink to='/dashboard/home'><FaHome className="text-xl" /> Admin Home</NavLink>
                                                 </li>
                                                 <li>
-                                                      <NavLink to='/dashboard/additems'><FaUtensils className="text-xl" /> Add items</NavLink>
+                                                      <NavLink to='/dashboard/addItem'><FaUtensils className="text-xl" /> Add items</NavLink>
                                                 </li>
                                                 <li>
                                                       <NavLink to='/dashboard/aitems'><FaListUl className="text-xl" /> Manage items</NavLink>

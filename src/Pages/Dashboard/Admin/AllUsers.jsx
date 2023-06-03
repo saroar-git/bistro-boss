@@ -2,12 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { FaTrashAlt, FaUserShield, } from "react-icons/fa";
 import Swal from "sweetalert2";
-
+import useAxiosSecure from "../../../Hooks/useAxiousSecure";
+import SectionTitle from "../../../Components/SectionTitle";
 
 const AllUsers = () => {
+      const [axiosSecure] = useAxiosSecure();
       const { data: users = [], refetch } = useQuery(['users'], async () => {
-            const res = await fetch('http://localhost:5000/users');
-            return res.json();
+            const res = await axiosSecure.get('/users');
+            return res.data;
       });
 
       const handleMakeAdmin = user => {
@@ -16,13 +18,13 @@ const AllUsers = () => {
             })
                   .then(res => res.json())
                   .then(data => {
-                        
+
                         if (data.modifiedCount) {
                               refetch();
                               Swal.fire({
                                     position: 'top-end',
                                     icon: 'success',
-                                    title: `${user.name} is as Admin Now!`,
+                                    title: `${user.name} is an Admin Now!`,
                                     showConfirmButton: false,
                                     timer: 1000
                               });
@@ -47,7 +49,7 @@ const AllUsers = () => {
                         })
                               .then(res => res.json())
                               .then(data => {
-                                    console.log(data)
+                                    console.log(data);
                                     if (data.deletedCount > 0) {
                                           refetch();
                                           Swal.fire(
@@ -63,11 +65,13 @@ const AllUsers = () => {
       return (
             <div className="w-full min-h-full mt-12 px-12">
                   <Helmet>
-                        <title>Bistro-Boss || All Users</title>
+                        <title>Bistro-Boss | All Users</title>
                   </Helmet>
 
+                  <SectionTitle subHeading={'---How many??---'} heading={'MANAGE ALL USERS'} />
 
-                  <div className="p-10 bg-base-200 rounded">
+
+                  <div className="p-10 bg-base-200 rounded mt-20">
 
                         <div className="md:text-2xl uppercase  font-semibold">
                               <h3>Total users: {users.length}</h3>

@@ -1,13 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import './NavBar.css';
-import { useContext } from "react";
-import { AuthContext } from "../../Providers/AuthProvider";
 import { BiCartAdd } from "react-icons/bi";
 import { HiOutlineLogin, HiOutlineLogout } from "react-icons/hi";
 import useCart from "../../Hooks/useCart";
+import useAuth from "../../Hooks/useAuth";
 
 const NavBar = () => {
-      const { user, logOut } = useContext(AuthContext);
+      const { user, logOut } = useAuth()
       const [cart] = useCart();
 
       const handleLogout = () => {
