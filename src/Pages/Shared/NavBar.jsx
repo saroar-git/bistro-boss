@@ -4,9 +4,11 @@ import { BiCartAdd } from "react-icons/bi";
 import { HiOutlineLogin, HiOutlineLogout } from "react-icons/hi";
 import useCart from "../../Hooks/useCart";
 import useAuth from "../../Hooks/useAuth";
+import useAdmin from "../../Hooks/useAdmin";
 
 const NavBar = () => {
-      const { user, logOut } = useAuth()
+      const { user, logOut } = useAuth();
+      const [isAdmin] = useAdmin();
       const [cart] = useCart();
 
       const handleLogout = () => {
@@ -22,16 +24,18 @@ const NavBar = () => {
 
             <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><NavLink to='/order/salad'>Our Shop</NavLink></li>
 
-            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><NavLink to='/board'>Dashboard</NavLink></li>
+            <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><NavLink to={isAdmin ? '/dashboard/adminHome' : '/dashboard/userHome'}>Dashboard</NavLink></li>
 
             <li className="rounded-3xl hover:bg-black hover:bg-opacity-30"><NavLink to='/contact'>Contact Us</NavLink></li>
 
-            <li>
-                  <Link to='/dashboard/mycart' className="gap-0">
-                        <BiCartAdd className="text-3xl" />
-                        <div className="badge text-xs font-bold text-white -ml-1 mb-4 badge-outline">+{cart?.length || 0}</div>
-                  </Link>
-            </li>
+            {
+                  user && !isAdmin ? <li>
+                        <Link to='/dashboard/mycart' className="gap-0">
+                              <BiCartAdd className="text-3xl" />
+                              <div className="badge text-xs font-bold text-white -ml-1 mb-4 badge-outline">+{cart?.length || 0}</div>
+                        </Link>
+                  </li>: ''
+            }
 
             <li className="-mx-3">
                   {user && (

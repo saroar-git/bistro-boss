@@ -7,6 +7,7 @@ import SectionTitle from "../../../Components/SectionTitle";
 
 const AllUsers = () => {
       const [axiosSecure] = useAxiosSecure();
+      
       const { data: users = [], refetch } = useQuery(['users'], async () => {
             const res = await axiosSecure.get('/users');
             return res.data;
