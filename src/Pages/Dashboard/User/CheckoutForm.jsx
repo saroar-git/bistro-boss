@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiousSecure";
+import Swal from "sweetalert2";
 
 const CheckoutForm = ({ cart, price }) => {
       const stripe = useStripe();
@@ -34,12 +35,16 @@ const CheckoutForm = ({ cart, price }) => {
                   return;
             }
 
+            // Add console.log to check the cart array and its contents
+            console.log('Cart:', cart);
+
             const { error } = await stripe.createPaymentMethod({
                   type: 'card',
                   card
             });
 
             if (error) {
+                  console.log(error);
                   setCardError(error.message);
             } else {
                   setCardError('');
@@ -76,25 +81,36 @@ const CheckoutForm = ({ cart, price }) => {
                         date: new Date(),
                         quantity: cart.length,
                         cartItems: cart.map(item => item._id),
-                        menuItems: cart.map(item => item.menuItemId),
+                        menuItems: cart.map(item => item.itemId),
                         status: 'service pending',
                         itemNames: cart.map(item => item.name)
                   };
+
+                  console.log('Payment:', payment);
+
                   axiosSecure.post('/payments', payment)
                         .then(res => {
                               console.log(res.data);
-                              if (res.data.result.insertedId) {
-                                    // display confirmation message
+                              if (res.data.insertResult.insertedId) {
+                                    Swal.fire({
+                                          position: 'top-end',
+                                          icon: 'success',
+                                          title: 'Payment successful',
+                                          showConfirmButton: false,
+                                          timer: 1500
+                                    });
                               }
                         })
                         .catch(error => {
+                              console.log(error);
                               setCardError(error);
                         });
             }
       };
 
+
       return (
-            <>
+            <div>
                   <form className="w-3/5 mx-auto text-center" onSubmit={handleSubmit}>
                         <CardElement
                               className="border-2 border-primary p-3 rounded-lg"
@@ -117,9 +133,10 @@ const CheckoutForm = ({ cart, price }) => {
                               {processing ? 'Processing...' : 'Pay'}
                         </button>
                   </form>
-                  {cardError && <p className="text-red-600 text-center">{cardError}</p>}
-                  {transactionId && <p className="text-green-500 text-center">Transaction completed with transactionId: {transactionId}</p>}
-            </>
+                  <p className="text-red-600 text-center mt-4 text-xl">{cardError && <>{cardError}</>}</p>
+
+                  <p className="text-green-500 text-center text-xl">{transactionId && <>Transaction completed with transactionId: {transactionId}</>}</p>
+            </div>
       );
 };
 
