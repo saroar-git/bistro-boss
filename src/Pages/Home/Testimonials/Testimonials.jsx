@@ -12,7 +12,7 @@ import SectionTitle from "../../../Components/SectionTitle";
 const Testimonials = () => {
       const [review, setReview] = useState([]);
       useEffect(() => {
-            fetch('http://localhost:5000/reviews')
+            fetch('https://bistro-boss-server-six-chi.vercel.app/reviews')
                   .then(res => res.json())
                   .then(data => { setReview(data); });
       }, []);

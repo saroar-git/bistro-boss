@@ -14,7 +14,7 @@ const AllUsers = () => {
       });
 
       const handleMakeAdmin = user => {
-            fetch(`http://localhost:5000/users/admin/${user._id}`, {
+            fetch(`https://bistro-boss-server-six-chi.vercel.app/users/admin/${user._id}`, {
                   method: "PATCH"
             })
                   .then(res => res.json())
@@ -45,7 +45,7 @@ const AllUsers = () => {
             }).then((result) => {
 
                   if (result.isConfirmed) {
-                        fetch(`http://localhost:5000/users/${user._id}`, {
+                        fetch(`https://bistro-boss-server-six-chi.vercel.app/users/${user._id}`, {
                               method: 'DELETE'
                         })
                               .then(res => res.json())

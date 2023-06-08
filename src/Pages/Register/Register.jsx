@@ -36,7 +36,7 @@ const Register = () => {
                   .then(() => {
 
                         const savedUser = { name, email: user.email };
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://bistro-boss-server-six-chi.vercel.app/users', {
                               method: "POST",
                               headers: { 'content-type': 'application/json' },
                               body: JSON.stringify(savedUser)

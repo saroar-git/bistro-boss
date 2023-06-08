@@ -5,7 +5,7 @@ import SectionTitle from "../../../Components/SectionTitle";
 const Recommended = () => {
       const [menu, setMenu] = useState([]);
       useEffect(() => {
-            fetch('http://localhost:5000/menu')
+            fetch('https://bistro-boss-server-six-chi.vercel.app/menu')
                   .then(res => res.json())
                   .then(data => {
                         const popularItems = data.filter(item => item.category === 'salad');
