@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.drawer-side a.active{
+      color: white;
+}
+.drawer-side a{
+      background-color: transparent;
+}
+
+.fixed a.active{
+      color: #D1A054;
+}
+.fixed a{
+      background-color: transparent;
+      color: white
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap');
