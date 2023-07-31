@@ -1,6 +1,6 @@
 # Bistro Boss | a food website
 
-# This is  a MERN-Stack Project.
+## This is  a MERN-Stack Project.
 
 ## Admin route:
 - email: mama@mami.com
